@@ -1,6 +1,13 @@
 local ui = {}
 local conf = require("modules.ui.config")
 
+ui["MunifTanjim/nui.nvim"] = {
+  lazy = false,
+}
+ui["MaximilianLloyd/ascii.nvim"] = {
+  lazy = false,
+  config = conf.ascii,
+}
 ui["shaunsingh/nord.nvim"] = {
   lazy = true,
   config = conf.nord,
@@ -70,5 +77,4 @@ ui["j-hui/fidget.nvim"] = {
   event = "BufReadPost",
   config = conf.fidget,
 }
-
 return ui

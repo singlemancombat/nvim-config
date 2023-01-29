@@ -3,79 +3,176 @@ local config = {}
 function config.alpha()
   local alpha = require("alpha")
   local dashboard = require("alpha.themes.dashboard")
+  local plenary_path = require("plenary.path")
+  local ascii = require("ascii")
+  local cdir = vim.fn.getcwd()
+  local if_nil = vim.F.if_nil
 
-  dashboard.section.header.val = {
-    [[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⣠⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣡⣾⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣟⠻⣿⣿⣿⣿⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⣿⣿⡿⢫⣷⣿⣿⣿⣿⣿⣿⣿⣾⣯⣿⡿⢧⡚⢷⣌⣽⣿⣿⣿⣿⣿⣶⡌⣿⣿⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⣿⣿⠇⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣮⣇⣘⠿⢹⣿⣿⣿⣿⣿⣻⢿⣿⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⣿⣿⠀⢸⣿⣿⡇⣿⣿⣿⣿⣿⣿⣿⣿⡟⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣻⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⣿⡇⠀⣬⠏⣿⡇⢻⣿⣿⣿⣿⣿⣿⣿⣷⣼⣿⣿⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⣿⠀⠈⠁⠀⣿⡇⠘⡟⣿⣿⣿⣿⣿⣿⣿⣿⡏⠿⣿⣟⣿⣿⣿⣿⣿⣿⣿⣿⣇⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⡏⠀⠀⠐⠀⢻⣇⠀⠀⠹⣿⣿⣿⣿⣿⣿⣩⡶⠼⠟⠻⠞⣿⡈⠻⣟⢻⣿⣿⣿⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⢿⠀⡆⠀⠘⢿⢻⡿⣿⣧⣷⢣⣶⡃⢀⣾⡆⡋⣧⠙⢿⣿⣿⣟⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⡥⠂⡐⠀⠁⠑⣾⣿⣿⣾⣿⣿⣿⡿⣷⣷⣿⣧⣾⣿⣿⣿⣿⣿⣿⣿]],
-    [[⣿⣿⡿⣿⣍⡴⠆⠀⠀⠀⠀⠀⠀⠀⠀⣼⣄⣀⣷⡄⣙⢿⣿⣿⣿⣿⣯⣶⣿⣿⢟⣾⣿⣿⢡⣿⣿⣿⣿⣿]],
-    [[⣿⡏⣾⣿⣿⣿⣷⣦⠀⠀⠀⢀⡀⠀⠀⠠⣭⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⣡⣾⣿⣿⢏⣾⣿⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⣿⣿⡴⠀⠀⠀⠀⠀⠠⠀⠰⣿⣿⣿⣷⣿⠿⠿⣿⣿⣭⡶⣫⠔⢻⢿⢇⣾⣿⣿⣿⣿⣿⣿]],
-    [[⣿⣿⣿⡿⢫⣽⠟⣋⠀⠀⠀⠀⣶⣦⠀⠀⠀⠈⠻⣿⣿⣿⣾⣿⣿⣿⣿⡿⣣⣿⣿⢸⣾⣿⣿⣿⣿⣿⣿⣿]],
-    [[⡿⠛⣹⣶⣶⣶⣾⣿⣷⣦⣤⣤⣀⣀⠀⠀⠀⠀⠀⠀⠉⠛⠻⢿⣿⡿⠫⠾⠿⠋⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    [[⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣀⡆⣠⢀⣴⣏⡀⠀⠀⠀⠉⠀⠀⢀⣠⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    [[⠿⠛⠛⠛⠛⠛⠛⠻⢿⣿⣿⣿⣿⣯⣟⠷⢷⣿⡿⠋⠀⠀⠀⠀⣵⡀⢠⡿⠋⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    [[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⢿⣿⣿⠂⠀⠀⠀⠀⠀⢀⣽⣿⣿⣿⣿⣿⣿⣿⣍⠛⠿⣿⣿⣿⣿⣿⣿]],
-  }
-  dashboard.section.header.opts.hl = "Type"
-
-  local function button(sc, txt, leader_txt, keybind, keybind_opts)
-    local sc_after = sc:gsub("%s", ""):gsub(leader_txt, "<leader>")
-
-    local opts = {
+  local header = {
+    type = "text",
+    val = ascii.get_random_global(),
+    opts = {
       position = "center",
-      shortcut = sc,
-      cursor = 5,
-      width = 50,
-      align_shortcut = "right",
-      hl_shortcut = "Keyword",
-    }
+      hl = "function",
+      -- wrap = "overflow";
+    },
+  }
 
-    if nil == keybind then
-      keybind = sc_after
+  local nvim_web_devicons = {
+    enabled = true,
+    highlight = true,
+  }
+
+  local function get_extension(fn)
+    local match = fn:match("^.+(%..+)$")
+    local ext = ""
+    if match ~= nil then
+      ext = match:sub(2)
     end
-    keybind_opts = vim.F.if_nil(keybind_opts, { noremap = true, silent = true, nowait = true })
-    opts.keymap = { "n", sc_after, keybind, keybind_opts }
+    return ext
+  end
 
-    local function on_press()
-      -- local key = vim.api.nvim_replace_termcodes(keybind .. '<Ignore>', true, false, true)
-      local key = vim.api.nvim_replace_termcodes(sc_after .. "<Ignore>", true, false, true)
-      vim.api.nvim_feedkeys(key, "t", false)
+  local function icon(fn)
+    local nwd = require("nvim-web-devicons")
+    local ext = get_extension(fn)
+    return nwd.get_icon(fn, ext, { default = true })
+  end
+
+  local function file_button(fn, sc, short_fn)
+    short_fn = short_fn or fn
+    local ico_txt
+    local fb_hl = {}
+
+    if nvim_web_devicons.enabled then
+      local ico, hl = icon(fn)
+      local hl_option_type = type(nvim_web_devicons.highlight)
+      if hl_option_type == "boolean" then
+        if hl and nvim_web_devicons.highlight then
+          table.insert(fb_hl, { hl, 0, 3 })
+        end
+      end
+      if hl_option_type == "string" then
+        table.insert(fb_hl, { nvim_web_devicons.highlight, 0, 3 })
+      end
+      ico_txt = ico .. "  "
+    else
+      ico_txt = ""
+    end
+    local file_button_el = dashboard.button(sc, ico_txt .. short_fn, "<cmd>e " .. fn .. " <CR>")
+    local fn_start = short_fn:match(".*[/\\]")
+    if fn_start ~= nil then
+      table.insert(fb_hl, { "Comment", #ico_txt - 2, #fn_start + #ico_txt })
+    end
+    file_button_el.opts.hl = fb_hl
+    return file_button_el
+  end
+
+  local default_mru_ignore = { "gitcommit" }
+
+  local mru_opts = {
+    ignore = function(path, ext)
+      return (string.find(path, "COMMIT_EDITMSG")) or (vim.tbl_contains(default_mru_ignore, ext))
+    end,
+  }
+
+  --- @param start number
+  --- @param cwd string optional
+  --- @param items_number number optional number of items to generate, default = 10
+  local function mru(start, cwd, items_number, opts)
+    opts = opts or mru_opts
+    items_number = if_nil(items_number, 11)
+
+    local oldfiles = {}
+    for _, v in pairs(vim.v.oldfiles) do
+      if #oldfiles == items_number then
+        break
+      end
+      local cwd_cond
+      if not cwd then
+        cwd_cond = true
+      else
+        cwd_cond = vim.startswith(v, cwd)
+      end
+      local ignore = (opts.ignore and opts.ignore(v, get_extension(v))) or false
+      if (vim.fn.filereadable(v) == 1) and cwd_cond and not ignore then
+        oldfiles[#oldfiles + 1] = v
+      end
+    end
+    local target_width = 39
+
+    local tbl = {}
+    for i, fn in ipairs(oldfiles) do
+      local short_fn
+      if cwd then
+        short_fn = vim.fn.fnamemodify(fn, ":.")
+      else
+        short_fn = vim.fn.fnamemodify(fn, ":~")
+      end
+
+      if #short_fn > target_width then
+        short_fn = plenary_path.new(short_fn):shorten(1, { -2, -1 })
+        if #short_fn > target_width then
+          short_fn = plenary_path.new(short_fn):shorten(1, { -1 })
+        end
+      end
+
+      local shortcut = tostring(i + start - 1)
+
+      local file_button_el = file_button(fn, shortcut, short_fn)
+      tbl[i] = file_button_el
     end
 
     return {
-      type = "button",
-      val = txt,
-      on_press = on_press,
-      opts = opts,
+      type = "group",
+      val = tbl,
+      opts = {},
     }
   end
 
-  local leader = " "
-  dashboard.section.buttons.val = {
-    button("space f c", " Scheme change", leader, "<cmd>Telescope colorscheme<cr>"),
-    button("space f r", " File frecency", leader, "<cmd>Telescope frecency<cr>"),
-    button("space f e", " File history", leader, "<cmd>Telescope oldfiles<cr>"),
-    button("space f p", " Project find", leader, "<cmd>Telescope project<cr>"),
-    button("space f f", " File find", leader, "<cmd>Telescope find_files<cr>"),
-    button("space f n", " File new", leader, "<cmd>enew<cr>"),
-    button("space f w", " Word find", leader, "<cmd>Telescope live_grep<cr>"),
+  local section_mru = {
+    type = "group",
+    val = {
+      {
+        type = "text",
+        val = "Recent files",
+        opts = {
+          hl = "SpecialComment",
+          shrink_margin = false,
+          position = "center",
+        },
+      },
+      { type = "padding", val = 1 },
+      {
+        type = "group",
+        val = function()
+          return { mru(0, cdir, 10) }
+        end,
+        opts = { shrink_margin = false },
+      },
+    },
   }
-  dashboard.section.buttons.opts.hl = "String"
+
+  local buttons = {
+    type = "group",
+    val = {
+      { type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
+      { type = "padding", val = 1 },
+      dashboard.button("n", "  New file", "<cmd>enew<cr>"),
+      dashboard.button("m", "  File frecency", "<cmd>Telescope frecency<cr>"),
+      dashboard.button("r", "  File history", "<cmd>Telescope oldfiles<cr>"),
+      dashboard.button("p", "  Find Projects", "<cmd>Telescope projects<cr>"),
+      dashboard.button("f", "  Find file", "<cmd>Telescope find_files<cr>"),
+      dashboard.button("t", "  Find text", "<cmd>Telescope live_grep<cr>"),
+      dashboard.button("c", "  Configuration", "<cmd>e ~/.config/nvim/init.lua <CR>"),
+      dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
+    },
+    position = "center",
+  }
 
   local function footer()
     local stats = require("lazy").stats()
     local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-    return "   Have Fun with neovim"
-      .. "   v"
+    return "   v"
       .. vim.version().major
       .. "."
       .. vim.version().minor
@@ -91,17 +188,14 @@ function config.alpha()
   dashboard.section.footer.val = footer()
   dashboard.section.footer.opts.hl = "Function"
 
-  local head_butt_padding = 2
-  local occu_height = #dashboard.section.header.val + 2 * #dashboard.section.buttons.val + head_butt_padding
-  local header_padding = math.max(0, math.ceil((vim.fn.winheight("$") - occu_height) * 0.25))
-  local foot_butt_padding = 1
-
   dashboard.config.layout = {
-    { type = "padding", val = header_padding },
-    dashboard.section.header,
-    { type = "padding", val = head_butt_padding },
-    dashboard.section.buttons,
-    { type = "padding", val = foot_butt_padding },
+    { type = "padding", val = 2 },
+    header,
+    { type = "padding", val = 2 },
+    section_mru,
+    { type = "padding", val = 2 },
+    buttons,
+    { type = "padding", val = 2 },
     dashboard.section.footer,
   }
 
