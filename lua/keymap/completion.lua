@@ -6,20 +6,18 @@ local map_callback = bind.map_callback
 
 local plug_map = {
   -- LSP-related keymaps, work only when event = { "InsertEnter", "LspStart" }
-  ["n|<leader>li"] = map_cr("LspInfo"):with_noremap():with_silent():with_nowait():with_desc("lsp: Info"),
-  ["n|<leader>lr"] = map_cr("LspRestart"):with_noremap():with_silent():with_nowait():with_desc("lsp: Restart"),
+  ["n|gli"] = map_cr("LspInfo"):with_noremap():with_silent():with_nowait():with_desc("lsp: Info"),
+  ["n|glr"] = map_cr("LspRestart"):with_noremap():with_silent():with_nowait():with_desc("lsp: Restart"),
   ["n|go"] = map_cr("Lspsaga outline"):with_noremap():with_silent():with_desc("lsp: Toggle outline"),
-  ["n|g["] = map_cr("Lspsaga diagnostic_jump_prev"):with_noremap():with_silent():with_desc("lsp: Prev diagnostic"),
-  ["n|g]"] = map_cr("Lspsaga diagnostic_jump_next"):with_noremap():with_silent():with_desc("lsp: Next diagnostic"),
-  ["n|<leader>sl"] = map_cr("Lspsaga show_line_diagnostics")
-    :with_noremap()
-    :with_silent()
-    :with_desc("lsp: Line diagnostic"),
-  ["n|<leader>sc"] = map_cr("Lspsaga show_cursor_diagnostics")
+  ["n|gjp"] = map_cr("Lspsaga diagnostic_jump_prev"):with_noremap():with_silent():with_desc("lsp: Prev diagnostic"),
+  ["n|gjn"] = map_cr("Lspsaga diagnostic_jump_next"):with_noremap():with_silent():with_desc("lsp: Next diagnostic"),
+  ["n|gsl"] = map_cr("Lspsaga show_line_diagnostics"):with_noremap():with_silent():with_desc("lsp: Line diagnostic"),
+  ["n|gsc"] = map_cr("Lspsaga show_cursor_diagnostics")
     :with_noremap()
     :with_silent()
     :with_desc("lsp: Cursor diagnostic"),
-  ["n|gs"] = map_callback(function()
+  ["n|gsb"] = map_cr("Lspsaga show_buf_diagnostics"):with_noremap():with_silent():with_desc("lsp: Buffer diagnostic"),
+  ["n|gss"] = map_callback(function()
       vim.lsp.buf.signature_help()
     end)
     :with_noremap()
@@ -32,15 +30,11 @@ local plug_map = {
   ["v|ga"] = map_cu("Lspsaga code_action"):with_noremap():with_silent():with_desc("lsp: Code action for range"),
   ["n|gd"] = map_cr("Lspsaga peek_definition"):with_noremap():with_silent():with_desc("lsp: Preview definition"),
   ["n|gD"] = map_cr("Lspsaga goto_definition"):with_noremap():with_silent():with_desc("lsp: Goto definition"),
+  ["n|gp"] = map_cr("Lspsaga preview_definition"):with_noremap():with_silent():with_desc("lsp: Preview definition"),
   ["n|gh"] = map_cr("Lspsaga lsp_finder"):with_noremap():with_silent():with_desc("lsp: Show reference"),
-  ["n|<leader>ci"] = map_cr("Lspsaga incoming_calls")
-    :with_noremap()
-    :with_silent()
-    :with_desc("lsp: Show incoming calls"),
-  ["n|<leader>co"] = map_cr("Lspsaga outgoing_calls")
-    :with_noremap()
-    :with_silent()
-    :with_desc("lsp: Show outgoing calls"),
+  ["n|gt"] = map_cr("Lspsaga term_toggle"):with_noremap():with_silent():with_desc("lsp: Toggle term"),
+  ["n|gci"] = map_cr("Lspsaga incoming_calls"):with_noremap():with_silent():with_desc("lsp: Show incoming calls"),
+  ["n|gco"] = map_cr("Lspsaga outgoing_calls"):with_noremap():with_silent():with_desc("lsp: Show outgoing calls"),
 }
 
 bind.nvim_load_mapping(plug_map)
