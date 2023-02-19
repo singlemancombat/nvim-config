@@ -137,7 +137,7 @@ return function()
 
   -- Add your own config for formatter and linter here
 
-  -- local rustfmt = require("completion.efm.formatters.rustfmt")
+  local rustfmt = require("completion.efm.formatters.rustfmt")
   local clangfmt = require("completion.efm.formatters.clangfmt")
 
   -- Override default config here
@@ -169,7 +169,7 @@ return function()
     scss = { formatter = prettier },
     sh = { formatter = shfmt },
     markdown = { formatter = prettier },
-    -- rust = {formatter = rustfmt},
+    rust = { formatter = rustfmt },
   })
 
   formatting.configure_format_on_save()

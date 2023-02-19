@@ -1,5 +1,9 @@
 local tool = {}
 
+tool["ray-x/guihua.lua"] = {
+  run = "cd lua/fzy && make",
+}
+
 tool["tpope/vim-fugitive"] = {
   lazy = true,
   cmd = { "Git", "G" },
