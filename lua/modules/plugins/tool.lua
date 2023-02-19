@@ -1,9 +1,5 @@
 local tool = {}
 
-tool["ray-x/guihua.lua"] = {
-  run = "cd lua/fzy && make",
-}
-
 tool["tpope/vim-fugitive"] = {
   lazy = true,
   cmd = { "Git", "G" },
@@ -116,6 +112,10 @@ tool["mfussenegger/nvim-dap"] = {
     {
       "rcarriga/nvim-dap-ui",
       config = require("tool.dap.dapui"),
+    },
+    {
+      "theHamsta/nvim-dap-virtual-text",
+      config = require("tool.dap.dap-virtual-text"),
     },
   },
 }
