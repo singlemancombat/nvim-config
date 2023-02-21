@@ -11,7 +11,7 @@ ui["akinsho/bufferline.nvim"] = {
   config = require("ui.bufferline"),
 }
 ui["MunifTanjim/nui.nvim"] = {
-  lazy = false,
+  lazy = true,
 }
 ui["maximilianlloyd/ascii.nvim"] = {
   lazy = false,
@@ -25,12 +25,12 @@ ui["AlexvZyl/nordic.nvim"] = {
   config = require("ui.nordic"),
 }
 ui["catppuccin/nvim"] = {
-  lazy = false,
+  lazy = true,
   name = "catppuccin",
   config = require("ui.catppuccin"),
 }
 ui["folke/tokyonight.nvim"] = {
-  lazy = false,
+  lazy = true,
   name = "tokyonight",
   config = require("ui.tokyonight"),
 }
