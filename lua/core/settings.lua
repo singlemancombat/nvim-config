@@ -36,12 +36,13 @@ settings["background"] = "dark"
 -- check the below link for all the supported LSPs:
 -- https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/server_configurations
 settings["lsp"] = {
-	"bashls",
-	"clangd",
-	"gopls",
-	"html",
-	"lua_ls",
-	"pyright",
+  "bashls",
+  "clangd",
+  "gopls",
+  "html",
+  "jsonls",
+  "lua_ls",
+  "pyright",
 }
 
 -- Set the desired non-LSP sources here.
@@ -49,20 +50,20 @@ settings["lsp"] = {
 -- in `code_actions`, `completion`, `diagnostics`, `formatting`, `hover` folders:
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins
 settings["null_ls"] = {
-	-- formatting
-	"black",
-	"clang_format",
-	"eslint_d",
-	"jq",
-	"markdownlint",
-	"prettierd",
-	"rustfmt",
-	"shfmt",
-	"stylua",
+  -- formatting
+  "black",
+  "clang_format",
+  "eslint_d",
+  "jq",
+  "markdownlint",
+  "prettierd",
+  "rustfmt",
+  "shfmt",
+  "stylua",
 
-	-- diagnostics
-	"shellcheck",
-	-- "markdownlint",
+  -- diagnostics
+  "shellcheck",
+  -- "markdownlint",
 }
 
 return settings
