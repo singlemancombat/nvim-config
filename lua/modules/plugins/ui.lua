@@ -17,23 +17,25 @@ ui["maximilianlloyd/ascii.nvim"] = {
   lazy = false,
 }
 ui["shaunsingh/nord.nvim"] = {
-  lazy = true,
+  lazy = false,
   config = require("ui.nord"),
 }
 ui["AlexvZyl/nordic.nvim"] = {
-  lazy = true,
+  lazy = false,
   config = require("ui.nordic"),
 }
-ui["ayu-theme/ayu-vim"] = {
-  lazy = true,
+ui["Shatur/neovim-ayu"] = {
+  lazy = false,
+  name = "ayu",
+  config = require("ui.ayu"),
 }
 ui["catppuccin/nvim"] = {
-  lazy = true,
+  lazy = false,
   name = "catppuccin",
   config = require("ui.catppuccin"),
 }
 ui["folke/tokyonight.nvim"] = {
-  lazy = true,
+  lazy = false,
   name = "tokyonight",
   config = require("ui.tokyonight"),
 }
