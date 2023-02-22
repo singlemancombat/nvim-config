@@ -24,6 +24,9 @@ ui["AlexvZyl/nordic.nvim"] = {
   lazy = true,
   config = require("ui.nordic"),
 }
+ui["ayu-theme/ayu-vim"] = {
+  lazy = true,
+}
 ui["catppuccin/nvim"] = {
   lazy = true,
   name = "catppuccin",
