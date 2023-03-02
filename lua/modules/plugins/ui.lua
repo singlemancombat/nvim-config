@@ -44,6 +44,10 @@ ui["rebelot/kanagawa.nvim"] = {
   name = "kanagawa",
   config = require("ui.kanagawa"),
 }
+ui["NLKNguyen/papercolor-theme"] = {
+  lazy = false,
+  name = "papercolor",
+}
 ui["sainnhe/edge"] = {
   lazy = true,
   config = require("ui.edge"),
