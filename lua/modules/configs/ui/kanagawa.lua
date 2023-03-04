@@ -13,8 +13,22 @@ return function()
     diminactive = false, -- dim inactive window `:h hl-normalnc`
     globalstatus = false, -- adjust window separators highlight for laststatus=3
     terminalcolors = true, -- define vim.g.terminal_color_{0,17}
-    colors = {},
-    overrides = {},
-    theme = "default", -- load "default" theme or the experimental "light" theme
+    colors = {
+      palette = {},
+      theme = {
+        wave = {},
+        lotus = {},
+        dragon = {},
+        all = {},
+      },
+    },
+    overrides = function(colors) -- add/modify highlights
+      return {}
+    end,
+    theme = "wave", -- load "default" theme or the experimental "light" theme
+    background = {
+      dark = "wave",
+      light = "lotus",
+    },
   })
 end
