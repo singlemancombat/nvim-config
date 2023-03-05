@@ -231,18 +231,18 @@ end
 ---@param value number @The value to check
 ---@return boolean|nil @Returns nil if failed
 function M.tobool(value)
-  if value == 0 then
-    return false
-  elseif value == 1 then
-    return true
-  else
-    vim.notify(
-      "Attempt to convert data of type '" .. type(value) .. "' [other than 0 or 1] to boolean",
-      vim.log.levels.ERROR,
-      { title = "[utils] Runtime error" }
-    )
-    return nil
-  end
+	if value == 0 then
+		return false
+	elseif value == 1 then
+		return true
+	else
+		vim.notify(
+			"Attempting to convert data of type '" .. type(value) .. "' [other than 0 or 1] to boolean",
+			vim.log.levels.ERROR,
+			{ title = "[utils] Runtime error" }
+		)
+		return nil
+	end
 end
 
 return M
