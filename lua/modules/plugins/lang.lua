@@ -24,6 +24,10 @@ lang["simrat39/rust-tools.nvim"] = {
   config = require("lang.rust-tools"),
   dependencies = { "nvim-lua/plenary.nvim" },
 }
+lang["mfussenegger/nvim-jdtls"] = {
+  lazy = true,
+  ft = "java",
+}
 lang["Saecki/crates.nvim"] = {
   lazy = true,
   event = "BufReadPost Cargo.toml",

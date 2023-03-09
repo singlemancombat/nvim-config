@@ -41,15 +41,15 @@ settings["background"] = "dark"
 -- Filetypes in this list will skip lsp formatting if rhs is true
 ---@type table<string, boolean>
 settings["formatter_block_list"] = {
-	lua = false, -- example
+  lua = false, -- example
 }
 
 -- Servers in this list will skip setting formatting capabilities if rhs is true
 ---@type table<string, boolean>
 settings["server_formatting_block_list"] = {
-	lua_ls = true,
-	tsserver = true,
-	clangd = true,
+  lua_ls = true,
+  tsserver = true,
+  clangd = true,
 }
 
 -- Set the language servers that will be installed during bootstrap here
@@ -63,6 +63,7 @@ settings["lsp"] = {
   "jsonls",
   "lua_ls",
   "pyright",
+  "jdtls",
 }
 
 -- Set the general-purpose servers that will be installed during bootstrap here
@@ -76,12 +77,12 @@ settings["null_ls"] = {
   "eslint_d",
   "jq",
   "markdownlint",
-	"editorconfig_checker",
-	"prettier",
+  "editorconfig_checker",
+  "prettier",
   "rustfmt",
   "shfmt",
   "stylua",
-	"vint",
+  "vint",
 
   -- diagnostics
   "shellcheck",
