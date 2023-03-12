@@ -218,8 +218,9 @@ return function()
           ["@function.builtin.bash"] = { fg = cp.red, style = { "italic" } },
           ["@parameter.bash"] = { fg = cp.yellow, style = { "italic" } },
 
-          ["@field.lua"] = { fg = cp.lavender },
-          ["@constructor.lua"] = { fg = cp.flamingo },
+					["@field.lua"] = { fg = cp.lavender },
+					["@constructor.lua"] = { fg = cp.flamingo },
+					["@variable.builtin.lua"] = { fg = cp.teal },
 
           ["@constant.java"] = { fg = cp.teal },
 
