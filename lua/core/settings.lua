@@ -30,13 +30,13 @@ settings["palette_overwrite"] = {}
 -- Set the colorscheme to use here.
 -- Available values are: `catppuccin`, `catppuccin-latte`, `catppucin-mocha`, `catppuccin-frappe`, `catppuccin-macchiato`, `edge`, `nord`.
 ---@type string
-settings["colorscheme"] = "catppuccin"
+settings["colorscheme"] = "PaperColor"
 
 -- Set background color to use here.
 -- Useful if you would like to use a colorscheme that has a light and dark variant like `edge`.
 -- Valid values are: `dark`, `light`.
 ---@type "dark"|"light"
-settings["background"] = "dark"
+settings["background"] = "light"
 
 -- Filetypes in this list will skip lsp formatting if rhs is true
 ---@type table<string, boolean>

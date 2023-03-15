@@ -104,7 +104,7 @@ return function()
   require("lualine").setup({
     options = {
       icons_enabled = true,
-      theme = "catppuccin",
+      theme = "PaperColor",
       disabled_filetypes = {},
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
