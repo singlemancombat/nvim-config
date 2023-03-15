@@ -48,6 +48,11 @@ ui["NLKNguyen/papercolor-theme"] = {
   lazy = false,
   name = "papercolor",
 }
+ui["NTBBloodbath/sweetie.nvim"] = {
+  lazy = false,
+  name = "sweetie",
+  config = require("ui.sweetie"),
+}
 ui["sainnhe/edge"] = {
   lazy = true,
   config = require("ui.edge"),
