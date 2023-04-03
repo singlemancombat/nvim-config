@@ -13,7 +13,7 @@ return vim.schedule_wrap(function()
       "dockerfile",
       "go",
       "gomod",
-      "help",
+      "vimdoc",
       "html",
       "java",
       "javascript",
