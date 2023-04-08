@@ -31,7 +31,7 @@ local plug_map = {
     :with_noremap()
     :with_silent()
     :with_desc("terminal: Toggle horizontal"),
-  ["t|<C-\\>"] = map_cmd("<Esc><Cmd>ToggleTerm<CR>")
+  ["t|<C-\\>"] = map_cmd("<Cmd>ToggleTerm<CR>")
     :with_noremap()
     :with_silent()
     :with_desc("terminal: Toggle horizontal"),
