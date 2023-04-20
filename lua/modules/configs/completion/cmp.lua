@@ -43,6 +43,14 @@ return function()
 
   local lspkind = require("lspkind")
   local cmp = require("cmp")
+  local source_mapping = {
+    buffer = "[Buffer]",
+    nvim_lsp = "[LSP]",
+    luasnip = "[LuaSnip]",
+    dap = "[DAP]",
+    path = "[Path]",
+    cmp_tabnine = "[TN]",
+  }
 
   cmp.setup({
     window = {
@@ -72,17 +80,27 @@ return function()
       },
     },
     formatting = {
-      fields = { "kind", "abbr", "menu" },
       format = function(entry, vim_item)
-        local kind = lspkind.cmp_format({
-          mode = "symbol_text",
-          maxwidth = 50,
-          symbol_map = vim.tbl_deep_extend("force", icons.kind, icons.type, icons.cmp),
-        })(entry, vim_item)
-        local strings = vim.split(kind.kind, "%s", { trimempty = true })
-        kind.kind = " " .. strings[1] .. " "
-        kind.menu = "    (" .. strings[2] .. ")"
-        return kind
+        -- https://github.com/tzachar/cmp-tabnine#pretty-printing-menu-items
+        -- if you have lspkind installed, you can use it like
+        -- in the following line:
+        vim_item.kind = lspkind.symbolic(vim_item.kind, { mode = "symbol" })
+        vim_item.menu = source_mapping[entry.source.name]
+        if entry.source.name == "cmp_tabnine" then
+          local detail = (entry.completion_item.data or {}).detail
+          vim_item.kind = ""
+          if detail and detail:find(".*%%.*") then
+            vim_item.kind = vim_item.kind .. " " .. detail
+          end
+  
+          if (entry.completion_item.data or {}).multiline then
+            vim_item.kind = vim_item.kind .. " " .. "[ML]"
+          end
+        end
+        -- the maximum length of the menu item, if it's logger than this value, it will be truncated
+        local maxwidth = 80
+        vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
+        return vim_item
       end,
     },
     -- You can set mappings if you want
