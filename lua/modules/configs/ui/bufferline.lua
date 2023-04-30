@@ -45,8 +45,8 @@ return function()
     highlights = {},
   }
 
-  if vim.g.colors_name == "catppuccin" then
-    local cp = require("modules.utils").get_palette() -- Get the palette.
+	if vim.g.colors_name:find("catppuccin") then
+		local cp = require("modules.utils").get_palette() -- Get the palette.
 
     local catppuccin_hl_overwrite = {
       highlights = require("catppuccin.groups.integrations.bufferline").get({

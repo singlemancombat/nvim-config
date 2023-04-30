@@ -35,23 +35,23 @@ local palette = nil
 ---Initialize the palette
 ---@return palette
 local function init_palette()
-  if not palette then
-    palette = vim.g.colors_name == "catppuccin" and require("catppuccin.palettes").get_palette()
-      or {
-        rosewater = "#DC8A78",
-        flamingo = "#DD7878",
-        mauve = "#CBA6F7",
-        pink = "#F5C2E7",
-        red = "#E95678",
-        maroon = "#B33076",
-        peach = "#FF8700",
-        yellow = "#F7BB3B",
-        green = "#AFD700",
-        sapphire = "#36D0E0",
-        blue = "#61AFEF",
-        sky = "#04A5E5",
-        teal = "#B5E8E0",
-        lavender = "#7287FD",
+	if not palette then
+		palette = vim.g.colors_name:find("catppuccin") and require("catppuccin.palettes").get_palette()
+			or {
+				rosewater = "#DC8A78",
+				flamingo = "#DD7878",
+				mauve = "#CBA6F7",
+				pink = "#F5C2E7",
+				red = "#E95678",
+				maroon = "#B33076",
+				peach = "#FF8700",
+				yellow = "#F7BB3B",
+				green = "#AFD700",
+				sapphire = "#36D0E0",
+				blue = "#61AFEF",
+				sky = "#04A5E5",
+				teal = "#B5E8E0",
+				lavender = "#7287FD",
 
         text = "#F2F2BF",
         subtext1 = "#BAC2DE",
