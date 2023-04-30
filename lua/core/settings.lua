@@ -32,6 +32,10 @@ settings["palette_overwrite"] = {}
 ---@type string
 settings["colorscheme"] = "catppuccin-mocha"
 
+-- Set it to true if your terminal has transparent background.
+---@type boolean
+settings["transparent_background"] = false
+
 -- Set background color to use here.
 -- Useful if you would like to use a colorscheme that has a light and dark variant like `edge`.
 -- Valid values are: `dark`, `light`.
@@ -75,7 +79,7 @@ settings["lsp"] = {
 -- check the below link for all supported sources
 -- in `code_actions`, `completion`, `diagnostics`, `formatting`, `hover` folders:
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins
-settings["null_ls"] = {
+settings["null_ls_deps"] = {
   -- formatting
   "black",
   "clang_format",
