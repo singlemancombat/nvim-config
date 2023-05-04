@@ -98,4 +98,8 @@ settings["null_ls_deps"] = {
   -- "markdownlint",
 }
 
+-- Set the inline_diagnostic_virtual_text to false if they are annoying for you
+---@type boolean
+settings["inline_diagnostic_virtual_text"] = true
+
 return settings

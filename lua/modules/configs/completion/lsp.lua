@@ -37,68 +37,30 @@ return function()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-  local opts = {
-    on_attach = function()
-      require("lsp_signature").on_attach({
-        bind = true,
-        use_lspsaga = false,
-        floating_window = true,
-        fix_pos = true,
-        hint_enable = true,
-        hi_parameter = "Search",
-        handler_opts = {
-          border = "rounded",
-        },
-      })
-    end,
-    capabilities = capabilities,
-  }
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+		signs = true,
+		underline = true,
+		virtual_text = require("core.settings").inline_diagnostic_virtual_text,
+		-- set update_in_insert to false bacause it was enabled by lspsaga
+		update_in_insert = false,
+	})
 
-	---A handler to setup all servers defined under `completion/servers/*.lua`
-	---@param lsp_name string
-	local function mason_handler(lsp_name)
-		---Check whether this server has custom configs
-		---@return boolean
-		local function check_config()
-			local cfg_path = require("core.global").vim_path .. "/lua/modules/configs/completion/servers"
-			local list = {}
-			local servers_list = vim.split(vim.fn.glob(cfg_path .. "/*.lua"), "\n")
-			if type(servers_list) == "table" then
-				for _, s in ipairs(servers_list) do
-					list[#list + 1] = s:sub(#cfg_path + 2, -5)
-				end
-			end
-			return vim.tbl_contains(list, lsp_name)
-		end
-
-		if not check_config() then
-			-- Default to use factory config for server(s) that doesn't include a spec
-			nvim_lsp[lsp_name].setup(opts)
-			return
-		end
-
-		local custom_handler = require("completion.servers." .. lsp_name)
-		if type(custom_handler) == "function" then
-			--- Case where language server requires its own setup
-			--- Make sure to call require("lspconfig")[lsp_name].setup() in the function
-			--- See `clangd.lua` for example.
-			custom_handler(opts)
-		elseif type(custom_handler) == "table" then
-			nvim_lsp[lsp_name].setup(vim.tbl_deep_extend("force", opts, custom_handler))
-		else
-			vim.notify(
-				string.format(
-					"Failed to setup [%s].\n\nServer definition under `completion/servers` must return\neither a fun(opts) or a table (got '%s' instead)",
-					lsp_name,
-					type(custom_handler)
-				),
-				vim.log.levels.ERROR,
-				{ title = "nvim-lspconfig" }
-			)
-		end
-	end
-
-	mason_lspconfig.setup_handlers({ mason_handler })
+	local opts = {
+		on_attach = function()
+			require("lsp_signature").on_attach({
+				bind = true,
+				use_lspsaga = false,
+				floating_window = true,
+				fix_pos = true,
+				hint_enable = true,
+				hi_parameter = "Search",
+				handler_opts = {
+					border = "rounded",
+				},
+			})
+		end,
+		capabilities = capabilities,
+	}
 
 	---A handler to setup all servers defined under `completion/servers/*.lua`
 	---@param lsp_name string
