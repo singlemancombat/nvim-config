@@ -71,7 +71,7 @@ settings["lsp"] = {
   "html",
   "jsonls",
   "lua_ls",
-  "pyright",
+	"jedi_language_server",
   "jdtls",
 }
 
