@@ -101,74 +101,67 @@ return function()
     return ""
   end
 
-  require("lualine").setup({
-    options = {
-      icons_enabled = true,
-      theme = "catppuccin",
-      disabled_filetypes = {},
-      component_separators = { left = "", right = "" },
-      section_separators = { left = "", right = "" },
-      ignore_focus = {},
-      always_divide_middle = true,
-      globalstatus = false,
-      refresh = {
-        statusline = 1000,
-        tabline = 1000,
-        winbar = 1000,
-      },
-    },
-    sections = {
-      lualine_a = { { "mode" } },
-      lualine_b = { { "branch" }, { "diff", source = diff_source } },
-      lualine_c = { lspsaga_symbols },
-      lualine_x = {
-        { escape_status },
-        {
-          "diagnostics",
-          sources = { "nvim_diagnostic" },
-          symbols = {
-            error = icons.diagnostics.Error,
-            warn = icons.diagnostics.Warning,
-            info = icons.diagnostics.Information,
-          },
-        },
-        { get_cwd },
-      },
-      lualine_y = {
-        { "filetype", colored = true, icon_only = true },
-        { python_venv },
-        { "encoding" },
-        {
-          "fileformat",
-          icons_enabled = true,
-          symbols = {
-            unix = "LF",
-            dos = "CRLF",
-            mac = "CR",
-          },
-        },
-      },
-      lualine_z = { "progress", "location" },
-    },
-    inactive_sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = { "filename" },
-      lualine_x = { "location" },
-      lualine_y = {},
-      lualine_z = {},
-    },
-    tabline = {},
-    extensions = {
-      "quickfix",
-      "nvim-tree",
-      "nvim-dap-ui",
-      "toggleterm",
-      "fugitive",
-      outline,
-      diffview,
-    },
-  })
+	require("lualine").setup({
+		options = {
+			icons_enabled = true,
+			theme = "catppuccin",
+			disabled_filetypes = {},
+			component_separators = "|",
+			section_separators = { left = "", right = "" },
+		},
+		sections = {
+			lualine_a = { { "mode" } },
+			lualine_b = { { "branch" }, { "diff", source = diff_source } },
+			lualine_c = { lspsaga_symbols },
+			lualine_x = {
+				{ escape_status },
+				{
+					"diagnostics",
+					sources = { "nvim_diagnostic" },
+					symbols = {
+						error = icons.diagnostics.Error,
+						warn = icons.diagnostics.Warning,
+						info = icons.diagnostics.Information,
+						hint = icons.diagnostics.Hint_alt,
+					},
+				},
+				{ get_cwd },
+			},
+			lualine_y = {
+				{ "filetype", colored = true, icon_only = true },
+				{ python_venv },
+				{ "encoding" },
+				{
+					"fileformat",
+					icons_enabled = true,
+					symbols = {
+						unix = "LF",
+						dos = "CRLF",
+						mac = "CR",
+					},
+				},
+			},
+			lualine_z = { "progress", "location" },
+		},
+		inactive_sections = {
+			lualine_a = {},
+			lualine_b = {},
+			lualine_c = { "filename" },
+			lualine_x = { "location" },
+			lualine_y = {},
+			lualine_z = {},
+		},
+		tabline = {},
+		extensions = {
+			"quickfix",
+			"nvim-tree",
+			"nvim-dap-ui",
+			"toggleterm",
+			"fugitive",
+			outline,
+			diffview,
+		},
+	})
 
   -- Properly set background color for lspsaga
   local winbar_bg = require("modules.utils").hl_to_rgb("StatusLine", true, colors.mantle)
