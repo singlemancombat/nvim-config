@@ -60,9 +60,10 @@ settings["formatter_block_list"] = {
 -- Servers in this list will skip setting formatting capabilities if rhs is true
 ---@type table<string, boolean>
 settings["server_formatting_block_list"] = {
-  lua_ls = true,
-  tsserver = true,
-  clangd = true,
+	lua_ls = true,
+	tsserver = true,
+	clangd = true,
+	pylsp = true,
 }
 
 -- Set the language servers that will be installed during bootstrap here
@@ -75,7 +76,7 @@ settings["lsp"] = {
   "html",
   "jsonls",
   "lua_ls",
-	"jedi_language_server",
+	"pylsp",
   "jdtls",
 }
 
