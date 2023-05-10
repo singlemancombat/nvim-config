@@ -10,9 +10,9 @@ editor["rainbowhxch/accelerated-jk.nvim"] = {
   config = require("editor.accelerated-jk"),
 }
 editor["rmagatti/auto-session"] = {
-  lazy = true,
-  cmd = { "SaveSession", "RestoreSession", "DeleteSession" },
-  config = require("editor.auto-session"),
+	lazy = true,
+	cmd = { "SessionSave", "SessionRestore", "SessionDelete" },
+	config = require("editor.auto-session"),
 }
 editor["m4xshen/autoclose.nvim"] = {
   lazy = true,
