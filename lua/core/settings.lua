@@ -3,7 +3,7 @@ local home = require("core.global").home
 
 -- Set it to false if you want to use https to update plugins and treesitter parsers.
 ---@type boolean
-settings["use_ssh"] = true
+settings["use_ssh"] = false
 
 -- Set it to false if there are no need to format on save.
 ---@type boolean
@@ -60,10 +60,10 @@ settings["formatter_block_list"] = {
 -- Servers in this list will skip setting formatting capabilities if rhs is true
 ---@type table<string, boolean>
 settings["server_formatting_block_list"] = {
-	lua_ls = true,
-	tsserver = true,
-	clangd = true,
-	pylsp = true,
+  lua_ls = true,
+  tsserver = true,
+  clangd = true,
+  pylsp = true,
 }
 
 -- Set the language servers that will be installed during bootstrap here
@@ -76,7 +76,7 @@ settings["lsp"] = {
   "html",
   "jsonls",
   "lua_ls",
-	"pylsp",
+  "pylsp",
   "jdtls",
 }
 
