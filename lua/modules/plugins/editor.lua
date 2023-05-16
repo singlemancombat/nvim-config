@@ -10,9 +10,9 @@ editor["rainbowhxch/accelerated-jk.nvim"] = {
   config = require("editor.accelerated-jk"),
 }
 editor["rmagatti/auto-session"] = {
-	lazy = true,
-	cmd = { "SessionSave", "SessionRestore", "SessionDelete" },
-	config = require("editor.auto-session"),
+  lazy = true,
+  cmd = { "SessionSave", "SessionRestore", "SessionDelete" },
+  config = require("editor.auto-session"),
 }
 editor["m4xshen/autoclose.nvim"] = {
   lazy = true,
@@ -71,9 +71,9 @@ editor["romainl/vim-cool"] = {
   event = { "CursorMoved", "InsertEnter" },
 }
 editor["lambdalisue/suda.vim"] = {
-	lazy = true,
-	cmd = { "SudaRead", "SudaWrite" },
-	config = require("editor.suda"),
+  lazy = true,
+  cmd = { "SudaRead", "SudaWrite" },
+  config = require("editor.suda"),
 }
 
 ----------------------------------------------------------------------
@@ -90,7 +90,7 @@ editor["nvim-treesitter/nvim-treesitter"] = {
   config = require("editor.treesitter"),
   dependencies = {
     { "nvim-treesitter/nvim-treesitter-textobjects" },
-		{ "nvim-treesitter/nvim-treesitter-context" },
+    { "nvim-treesitter/nvim-treesitter-context" },
     { "mrjones2014/nvim-ts-rainbow" },
     { "JoosepAlviste/nvim-ts-context-commentstring" },
     { "mfussenegger/nvim-treehopper" },

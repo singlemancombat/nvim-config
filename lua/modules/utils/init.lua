@@ -35,23 +35,23 @@ local palette = nil
 ---Initialize the palette
 ---@return palette
 local function init_palette()
-	if not palette then
-		palette = vim.g.colors_name:find("catppuccin") and require("catppuccin.palettes").get_palette()
-			or {
-				rosewater = "#DC8A78",
-				flamingo = "#DD7878",
-				mauve = "#CBA6F7",
-				pink = "#F5C2E7",
-				red = "#E95678",
-				maroon = "#B33076",
-				peach = "#FF8700",
-				yellow = "#F7BB3B",
-				green = "#AFD700",
-				sapphire = "#36D0E0",
-				blue = "#61AFEF",
-				sky = "#04A5E5",
-				teal = "#B5E8E0",
-				lavender = "#7287FD",
+  if not palette then
+    palette = vim.g.colors_name:find("catppuccin") and require("catppuccin.palettes").get_palette()
+      or {
+        rosewater = "#DC8A78",
+        flamingo = "#DD7878",
+        mauve = "#CBA6F7",
+        pink = "#F5C2E7",
+        red = "#E95678",
+        maroon = "#B33076",
+        peach = "#FF8700",
+        yellow = "#F7BB3B",
+        green = "#AFD700",
+        sapphire = "#36D0E0",
+        blue = "#61AFEF",
+        sky = "#04A5E5",
+        teal = "#B5E8E0",
+        lavender = "#7287FD",
 
         text = "#F2F2BF",
         subtext1 = "#BAC2DE",
@@ -104,17 +104,17 @@ end
 ---@param fallback_hl? string @Fallback value if the hl group is not defined
 ---@return string
 function M.hl_to_rgb(hl_group, use_bg, fallback_hl)
-	local hex = fallback_hl or "#000000"
-	local hlexists = pcall(vim.api.nvim_get_hl, 0, { name = hl_group, link = false })
+  local hex = fallback_hl or "#000000"
+  local hlexists = pcall(vim.api.nvim_get_hl, 0, { name = hl_group, link = false })
 
-	if hlexists then
-		local result = vim.api.nvim_get_hl(0, { name = hl_group, link = false })
-		if use_bg then
-			hex = result.bg and string.format("#%06x", result.bg) or "NONE"
-		else
-			hex = result.fg and string.format("#%06x", result.fg) or "NONE"
-		end
-	end
+  if hlexists then
+    local result = vim.api.nvim_get_hl(0, { name = hl_group, link = false })
+    if use_bg then
+      hex = result.bg and string.format("#%06x", result.bg) or "NONE"
+    else
+      hex = result.fg and string.format("#%06x", result.fg) or "NONE"
+    end
+  end
 
   return hex
 end
@@ -123,13 +123,13 @@ end
 ---@param name string @Target highlight group name
 ---@param def table @Attributes to be extended
 function M.extend_hl(name, def)
-	local hlexists = pcall(vim.api.nvim_get_hl, 0, { name = name, link = false })
-	if not hlexists then
-		-- Do nothing if highlight group not found
-		return
-	end
-	local current_def = vim.api.nvim_get_hl(0, { name = name, link = false })
-	local combined_def = vim.tbl_deep_extend("force", current_def, def)
+  local hlexists = pcall(vim.api.nvim_get_hl, 0, { name = name, link = false })
+  if not hlexists then
+    -- Do nothing if highlight group not found
+    return
+  end
+  local current_def = vim.api.nvim_get_hl(0, { name = name, link = false })
+  local combined_def = vim.tbl_deep_extend("force", current_def, def)
 
   vim.api.nvim_set_hl(0, name, combined_def)
 end
@@ -147,75 +147,75 @@ end
 
 -- Generate highlight groups for lspsaga. Existing attributes will NOT be overwritten
 function M.gen_lspkind_hl()
-	local colors = M.get_palette()
-	local dat = {
-		Class = colors.yellow,
-		Constant = colors.peach,
-		Constructor = colors.sapphire,
-		Enum = colors.yellow,
-		EnumMember = colors.teal,
-		Event = colors.yellow,
-		Field = colors.teal,
-		File = colors.rosewater,
-		Function = colors.blue,
-		Interface = colors.yellow,
-		Key = colors.red,
-		Method = colors.blue,
-		Module = colors.blue,
-		Namespace = colors.blue,
-		Number = colors.peach,
-		Operator = colors.sky,
-		Package = colors.blue,
-		Property = colors.teal,
-		Struct = colors.yellow,
-		TypeParameter = colors.maroon,
-		Variable = colors.peach,
-		Array = colors.peach,
-		Boolean = colors.peach,
-		Null = colors.yellow,
-		Object = colors.yellow,
-		String = colors.green,
-		TypeAlias = colors.green,
-		Parameter = colors.blue,
-		StaticMethod = colors.peach,
-		Text = colors.green,
-		Snippet = colors.mauve,
-		Folder = colors.blue,
-		Unit = colors.green,
-		Value = colors.peach,
-	}
+  local colors = M.get_palette()
+  local dat = {
+    Class = colors.yellow,
+    Constant = colors.peach,
+    Constructor = colors.sapphire,
+    Enum = colors.yellow,
+    EnumMember = colors.teal,
+    Event = colors.yellow,
+    Field = colors.teal,
+    File = colors.rosewater,
+    Function = colors.blue,
+    Interface = colors.yellow,
+    Key = colors.red,
+    Method = colors.blue,
+    Module = colors.blue,
+    Namespace = colors.blue,
+    Number = colors.peach,
+    Operator = colors.sky,
+    Package = colors.blue,
+    Property = colors.teal,
+    Struct = colors.yellow,
+    TypeParameter = colors.maroon,
+    Variable = colors.peach,
+    Array = colors.peach,
+    Boolean = colors.peach,
+    Null = colors.yellow,
+    Object = colors.yellow,
+    String = colors.green,
+    TypeAlias = colors.green,
+    Parameter = colors.blue,
+    StaticMethod = colors.peach,
+    Text = colors.green,
+    Snippet = colors.mauve,
+    Folder = colors.blue,
+    Unit = colors.green,
+    Value = colors.peach,
+  }
 
-	for kind, color in pairs(dat) do
-		vim.api.nvim_set_hl(0, "LspKind" .. kind, { fg = color, default = true })
-	end
+  for kind, color in pairs(dat) do
+    vim.api.nvim_set_hl(0, "LspKind" .. kind, { fg = color, default = true })
+  end
 end
 
 -- Generate highlight groups for alpha. Existing attributes will NOT be overwritten
 function M.gen_alpha_hl()
-	local colors = M.get_palette()
+  local colors = M.get_palette()
 
-	vim.api.nvim_set_hl(0, "AlphaHeader", { fg = colors.blue, default = true })
-	vim.api.nvim_set_hl(0, "AlphaButton", { fg = colors.green, default = true })
-	vim.api.nvim_set_hl(0, "AlphaAttr", { fg = colors.pink, italic = true, default = true })
-	vim.api.nvim_set_hl(0, "AlphaFooter", { fg = colors.yellow, default = true })
+  vim.api.nvim_set_hl(0, "AlphaHeader", { fg = colors.blue, default = true })
+  vim.api.nvim_set_hl(0, "AlphaButton", { fg = colors.green, default = true })
+  vim.api.nvim_set_hl(0, "AlphaAttr", { fg = colors.pink, italic = true, default = true })
+  vim.api.nvim_set_hl(0, "AlphaFooter", { fg = colors.yellow, default = true })
 end
 
 ---Convert number (0/1) to boolean
 ---@param value number @The value to check
 ---@return boolean|nil @Returns nil if failed
 function M.tobool(value)
-	if value == 0 then
-		return false
-	elseif value == 1 then
-		return true
-	else
-		vim.notify(
-			"Attempting to convert data of type '" .. type(value) .. "' [other than 0 or 1] to boolean",
-			vim.log.levels.ERROR,
-			{ title = "[utils] Runtime Error" }
-		)
-		return nil
-	end
+  if value == 0 then
+    return false
+  elseif value == 1 then
+    return true
+  else
+    vim.notify(
+      "Attempting to convert data of type '" .. type(value) .. "' [other than 0 or 1] to boolean",
+      vim.log.levels.ERROR,
+      { title = "[utils] Runtime Error" }
+    )
+    return nil
+  end
 end
 
 return M
