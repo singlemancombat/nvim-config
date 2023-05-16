@@ -176,7 +176,7 @@ return function()
       .. vim.version().minor
       .. "."
       .. vim.version().patch
-      .. "   "
+      .. "  󰅒 "
       .. stats.count
       .. " plugins in "
       .. ms
