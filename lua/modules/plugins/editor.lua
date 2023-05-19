@@ -1,9 +1,5 @@
 local editor = {}
 
-editor["github/copilot.vim"] = {
-  lazy = true,
-  event = "InsertEnter",
-}
 editor["rainbowhxch/accelerated-jk.nvim"] = {
   lazy = true,
   event = "VeryLazy",
