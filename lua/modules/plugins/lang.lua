@@ -43,4 +43,8 @@ lang["chrisbra/csv.vim"] = {
   lazy = true,
   ft = "csv",
 }
+lang["google/vim-jsonnet"] = {
+  lazy = true,
+  ft = { "jsonnet", "libsonnet" },
+}
 return lang
