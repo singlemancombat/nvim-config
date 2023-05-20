@@ -139,6 +139,11 @@ function autocmd.load_autocmds()
         "c,cpp",
         "nnoremap <leader>h :ClangdSwitchSourceHeaderVSplit<CR>",
       },
+      {
+        "Filetype",
+        "py,jsonnet,libsonnet",
+        [[setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab]],
+      },
     },
     yank = {
       {

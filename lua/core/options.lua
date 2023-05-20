@@ -71,7 +71,7 @@ local function load_options()
     signcolumn = "yes",
     smartcase = true,
     smarttab = true,
-    softtabstop = 4,
+    softtabstop = 2,
     splitbelow = true,
     splitkeep = "cursor",
     splitright = true,
