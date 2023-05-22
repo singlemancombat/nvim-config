@@ -1,6 +1,7 @@
 local M = {}
 
 local settings = require("core.settings")
+local format_notify = settings.format_notify
 local disabled_workspaces = settings.format_disabled_dirs
 local format_on_save = settings.format_on_save
 local server_formatting_block_list = settings.server_formatting_block_list
@@ -51,34 +52,34 @@ function M.enable_format_on_save(is_configured)
 end
 
 function M.disable_format_on_save(is_configured)
-	pcall(vim.api.nvim_del_augroup_by_name, "format_on_save")
-	if not is_configured then
-		vim.notify(
-			"Successfully disabled format-on-save",
-			vim.log.levels.INFO,
-			{ title = "Settings modification success" }
-		)
-	end
+  pcall(vim.api.nvim_del_augroup_by_name, "format_on_save")
+  if not is_configured then
+    vim.notify(
+      "Successfully disabled format-on-save",
+      vim.log.levels.INFO,
+      { title = "Settings modification success" }
+    )
+  end
 end
 
 function M.configure_format_on_save()
-	if format_on_save then
-		M.enable_format_on_save(true)
-	else
-		M.disable_format_on_save(true)
-	end
+  if format_on_save then
+    M.enable_format_on_save(true)
+  else
+    M.disable_format_on_save(true)
+  end
 end
 
 function M.toggle_format_on_save()
-	local status = pcall(vim.api.nvim_get_autocmds, {
-		group = "format_on_save",
-		event = "BufWritePre",
-	})
-	if not status then
-		M.enable_format_on_save(false)
-	else
-		M.disable_format_on_save(false)
-	end
+  local status = pcall(vim.api.nvim_get_autocmds, {
+    group = "format_on_save",
+    event = "BufWritePre",
+  })
+  if not status then
+    M.enable_format_on_save(false)
+  else
+    M.disable_format_on_save(false)
+  end
 end
 
 function M.format_filter(clients)
@@ -152,13 +153,19 @@ function M.format(opts)
     local result, err = client.request_sync("textDocument/formatting", params, timeout_ms, bufnr)
     if result and result.result then
       vim.lsp.util.apply_text_edits(result.result, bufnr, client.offset_encoding)
-      vim.notify(
-        string.format("[LSP] Format successfully with %s!", client.name),
-        vim.log.levels.INFO,
-        { title = "LSP Format Success" }
-      )
+      if format_notify then
+        vim.notify(
+          string.format("[LSP] Format successfully with %s!", client.name),
+          vim.log.levels.INFO,
+          { title = "LSP Format Success" }
+        )
+      end
     elseif err then
-      vim.notify(string.format("[LSP][%s] %s", client.name, err), vim.log.levels.ERROR, { title = "LSP Format Error" })
+      vim.notify(
+        string.format("[LSP][%s] %s", client.name, err),
+        vim.log.levels.ERROR,
+        { title = "LSP Format Error" }
+      )
     end
   end
 end
