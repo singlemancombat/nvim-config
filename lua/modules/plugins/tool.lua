@@ -64,7 +64,7 @@ tool["gelguy/wilder.nvim"] = {
   dependencies = { "romgrk/fzy-lua-native" },
 }
 tool["alexghergh/nvim-tmux-navigation"] = {
-  lazy = true,
+  lazy = false,
   config = require("tool.nvim-tmux-navigation"),
 }
 
