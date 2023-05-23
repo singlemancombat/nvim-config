@@ -63,6 +63,10 @@ tool["gelguy/wilder.nvim"] = {
   config = require("tool.wilder"),
   dependencies = { "romgrk/fzy-lua-native" },
 }
+tool["alexghergh/nvim-tmux-navigation"] = {
+  lazy = true,
+  config = require("tool.nvim-tmux-navigation"),
+}
 
 ----------------------------------------------------------------------
 --                        Telescope Plugins                         --
