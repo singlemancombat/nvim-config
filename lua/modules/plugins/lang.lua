@@ -6,6 +6,14 @@ local lang = {}
 --   build = ":GoInstallBinaries",
 --   config = require("lang.vim-go"),
 -- }
+lang["ray-x/navigator.lua"] = {
+  lazy = true,
+  config = require("lang.navigator"),
+  dependencies = {
+    "ray-x/guihua.lua",
+    "neovim/nvim-lspconfig",
+  },
+}
 lang["ray-x/go.nvim"] = {
   lazy = true,
   ft = { "go", "gomod" },
