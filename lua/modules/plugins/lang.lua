@@ -36,6 +36,11 @@ lang["mfussenegger/nvim-jdtls"] = {
   lazy = true,
   ft = "java",
 }
+lang["scalameta/nvim-metals"] = {
+  lazy = true,
+  ft = "scala",
+  dependencies = { "nvim-lua/plenary.nvim" },
+}
 lang["Saecki/crates.nvim"] = {
   lazy = true,
   event = "BufReadPost Cargo.toml",
