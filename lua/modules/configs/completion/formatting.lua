@@ -54,11 +54,7 @@ end
 function M.disable_format_on_save(is_configured)
   pcall(vim.api.nvim_del_augroup_by_name, "format_on_save")
   if not is_configured then
-    vim.notify(
-      "Successfully disabled format-on-save",
-      vim.log.levels.INFO,
-      { title = "Settings modification success" }
-    )
+    vim.notify("Successfully disabled format-on-save", vim.log.levels.INFO, { title = "Settings modification success" })
   end
 end
 
@@ -88,9 +84,11 @@ function M.format_filter(clients)
       return client.supports_method("textDocument/formatting")
     end)
     if status_ok and formatting_supported and client.name == "null-ls" then
-      return "null-ls"
+      return true
     elseif not server_formatting_block_list[client.name] and status_ok and formatting_supported then
-      return client.name
+      return true
+    else
+      return false
     end
   end, clients)
 end
@@ -161,11 +159,7 @@ function M.format(opts)
         )
       end
     elseif err then
-      vim.notify(
-        string.format("[LSP][%s] %s", client.name, err),
-        vim.log.levels.ERROR,
-        { title = "LSP Format Error" }
-      )
+      vim.notify(string.format("[LSP][%s] %s", client.name, err), vim.log.levels.ERROR, { title = "LSP Format Error" })
     end
   end
 end
