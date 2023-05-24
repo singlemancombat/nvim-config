@@ -39,6 +39,7 @@ lang["mfussenegger/nvim-jdtls"] = {
 lang["scalameta/nvim-metals"] = {
   lazy = true,
   ft = "scala",
+  config = require("lang.metals"),
   dependencies = { "nvim-lua/plenary.nvim" },
 }
 lang["Saecki/crates.nvim"] = {

@@ -37,4 +37,5 @@ return function()
   require("tool.dap.dap-lldb")
   require("tool.dap.dap-debugpy")
   require("tool.dap.dap-dlv")
+  require("tool.dap.dap-metals")
 end
