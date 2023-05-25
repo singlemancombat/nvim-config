@@ -35,6 +35,7 @@ lang["simrat39/rust-tools.nvim"] = {
 lang["mfussenegger/nvim-jdtls"] = {
   lazy = true,
   ft = "java",
+  config = require("lang.java"),
 }
 lang["scalameta/nvim-metals"] = {
   lazy = true,
