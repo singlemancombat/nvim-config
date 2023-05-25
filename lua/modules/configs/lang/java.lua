@@ -62,21 +62,6 @@ return function()
       "-data",
       workspace_dir,
     },
-
-    on_attach = function()
-      require("lsp_signature").on_attach({
-        bind = true,
-        use_lspsaga = false,
-        floating_window = true,
-        fix_pos = true,
-        hint_enable = true,
-        hi_parameter = "Search",
-        handler_opts = {
-          border = "rounded",
-        },
-      })
-    end,
-    capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
     root_dir = root_dir,
 
     -- Here you can configure eclipse.jdt.ls specific settings
