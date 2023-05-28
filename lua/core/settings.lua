@@ -38,7 +38,7 @@ settings["palette_overwrite"] = {}
 -- Set the colorscheme to use here.
 -- Available values are: `catppuccin`, `catppuccin-latte`, `catppuccin-mocha`, `catppuccin-frappe`, `catppuccin-macchiato`, `edge`, `nord`.
 ---@type string
-settings["colorscheme"] = "nordfox"
+settings["colorscheme"] = "nord"
 
 -- Set it to true if your terminal has transparent background.
 ---@type boolean
@@ -48,7 +48,7 @@ settings["transparent_background"] = false
 -- Useful if you would like to use a colorscheme that has a light and dark variant like `edge`.
 -- Valid values are: `dark`, `light`.
 ---@type "dark"|"light"
-settings["background"] = "light"
+settings["background"] = "dark"
 
 -- Set the command for handling external URLs here. The executable must be available on your $PATH.
 -- This entry is IGNORED on Windows and macOS, which have their default handlers builtin.
