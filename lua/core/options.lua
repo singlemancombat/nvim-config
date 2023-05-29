@@ -96,6 +96,7 @@ local function load_options()
     whichwrap = "h,l,<,>,[,],~",
     wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**",
     wildignorecase = true,
+    winbar = "%{%v:lua.require'modules.configs.ui.winbar'.eval()%}",
     winminwidth = 10,
     winwidth = 30,
     wrap = false,
