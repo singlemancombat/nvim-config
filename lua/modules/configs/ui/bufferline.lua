@@ -19,7 +19,7 @@ return function()
       enforce_regular_tabs = true,
       persist_buffer_sort = true,
       always_show_bufferline = true,
-      separator_style = "thin",
+      separator_style = "slant",
       diagnostics = "nvim_lsp",
       diagnostics_indicator = function(count)
         return "(" .. count .. ")"
@@ -44,9 +44,19 @@ return function()
     highlights = {},
   }
 
+  if vim.g.colors_name == "nord" then
+    local nord_hl_overwrite = {
+      highlights = require("nord").bufferline.highlights({
+        italic = true,
+        bold = true,
+        fill = "#181c24",
+      }),
+    }
+    opts = vim.tbl_deep_extend("force", opts, nord_hl_overwrite)
+  end
+
   if vim.g.colors_name:find("catppuccin") then
     local cp = require("modules.utils").get_palette() -- Get the palette.
-
     local catppuccin_hl_overwrite = {
       highlights = require("catppuccin.groups.integrations.bufferline").get({
         styles = { "italic", "bold" },
@@ -63,7 +73,6 @@ return function()
         },
       }),
     }
-
     opts = vim.tbl_deep_extend("force", opts, catppuccin_hl_overwrite)
   end
 
