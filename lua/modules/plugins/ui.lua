@@ -16,6 +16,12 @@ ui["MunifTanjim/nui.nvim"] = {
 ui["maximilianlloyd/ascii.nvim"] = {
   lazy = false,
 }
+ui["Jint-lzxy/nvim"] = {
+  lazy = false,
+  branch = "refactor/syntax-highlighting",
+  name = "catppuccin",
+  config = require("ui.catppuccin"),
+}
 ui["sainnhe/edge"] = {
   lazy = true,
   config = require("ui.edge"),
@@ -62,11 +68,6 @@ ui["Shatur/neovim-ayu"] = {
   lazy = false,
   name = "ayu",
   config = require("ui.ayu"),
-}
-ui["catppuccin/nvim"] = {
-  lazy = false,
-  name = "catppuccin",
-  config = require("ui.catppuccin"),
 }
 ui["folke/tokyonight.nvim"] = {
   lazy = false,
