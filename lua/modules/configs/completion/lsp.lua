@@ -66,7 +66,12 @@ return function()
           on_exit = function()
             if vim.fn.executable(black) == 1 and vim.fn.executable(ruff) == 1 then
               vim.notify("Finished installing pylsp plugins", vim.log.levels.INFO, { title = "[lsp] Install Status" })
-              return
+            else
+              vim.notify(
+                "Failed to install pylsp plugins. [Executable not found]",
+                vim.log.levels.ERROR,
+                { title = "[lsp] Install Failure" }
+              )
             end
           end,
           on_start = function()
