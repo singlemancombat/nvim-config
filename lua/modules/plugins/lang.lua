@@ -62,4 +62,8 @@ lang["google/vim-jsonnet"] = {
   lazy = true,
   ft = { "jsonnet", "libsonnet" },
 }
+lang["hashivim/vim-terraform"] = {
+  lazy = true,
+  ft = "hcl",
+}
 return lang
