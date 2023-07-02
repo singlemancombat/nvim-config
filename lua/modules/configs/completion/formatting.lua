@@ -35,7 +35,7 @@ end, { nargs = 1, complete = "filetype" })
 
 function M.enable_format_on_save(is_configured)
   local opts = { pattern = "*", timeout = 1000 }
-  vim.api.nvim_create_augroup("format_on_save", {})
+  vim.api.nvim_create_augroup("format_on_save", { clear = true })
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = "format_on_save",
     pattern = opts.pattern,
@@ -94,20 +94,20 @@ function M.format_filter(clients)
 end
 
 function M.format(opts)
-	local filedir = vim.fn.expand("%:p:h")
-	for i = 1, #disabled_workspaces do
-		if vim.regex(vim.fs.normalize(disabled_workspaces[i])):match_str(filedir) ~= nil then
-			vim.notify(
-				string.format(
-					"[LSP] Formatting for all files under [%s] has been disabled.",
-					vim.fs.normalize(disabled_workspaces[i])
-				),
-				vim.log.levels.WARN,
-				{ title = "LSP Formatter Warning" }
-			)
-			return
-		end
-	end
+  local filedir = vim.fn.expand("%:p:h")
+  for i = 1, #disabled_workspaces do
+    if vim.regex(vim.fs.normalize(disabled_workspaces[i])):match_str(filedir) ~= nil then
+      vim.notify(
+        string.format(
+          "[LSP] Formatting for all files under [%s] has been disabled.",
+          vim.fs.normalize(disabled_workspaces[i])
+        ),
+        vim.log.levels.WARN,
+        { title = "LSP Formatter Warning" }
+      )
+      return
+    end
+  end
 
   local bufnr = opts.bufnr or vim.api.nvim_get_current_buf()
   local clients = vim.lsp.buf_get_clients(bufnr)
@@ -136,39 +136,35 @@ function M.format(opts)
     )
   end
 
-	local timeout_ms = opts.timeout_ms
-	for _, client in pairs(clients) do
-		if block_list[vim.bo.filetype] == true then
-			vim.notify(
-				string.format(
-					"[LSP][%s] Formatting for [%s] has been disabled. This file is not being processed.",
-					client.name,
-					vim.bo.filetype
-				),
-				vim.log.levels.WARN,
-				{ title = "LSP Formatter Warning" }
-			)
-			return
-		end
-		local params = vim.lsp.util.make_formatting_params(opts.formatting_options)
-		local result, err = client.request_sync("textDocument/formatting", params, timeout_ms, bufnr)
-		if result and result.result then
-			vim.lsp.util.apply_text_edits(result.result, bufnr, client.offset_encoding)
-			if format_notify then
-				vim.notify(
-					string.format("[LSP] Format successfully with %s!", client.name),
-					vim.log.levels.INFO,
-					{ title = "LSP Format Success" }
-				)
-			end
-		elseif err then
-			vim.notify(
-				string.format("[LSP][%s] %s", client.name, err),
-				vim.log.levels.ERROR,
-				{ title = "LSP Format Error" }
-			)
-		end
-	end
+  local timeout_ms = opts.timeout_ms
+  for _, client in pairs(clients) do
+    if block_list[vim.bo.filetype] == true then
+      vim.notify(
+        string.format(
+          "[LSP][%s] Formatting for [%s] has been disabled. This file is not being processed.",
+          client.name,
+          vim.bo.filetype
+        ),
+        vim.log.levels.WARN,
+        { title = "LSP Formatter Warning" }
+      )
+      return
+    end
+    local params = vim.lsp.util.make_formatting_params(opts.formatting_options)
+    local result, err = client.request_sync("textDocument/formatting", params, timeout_ms, bufnr)
+    if result and result.result then
+      vim.lsp.util.apply_text_edits(result.result, bufnr, client.offset_encoding)
+      if format_notify then
+        vim.notify(
+          string.format("[LSP] Format successfully with %s!", client.name),
+          vim.log.levels.INFO,
+          { title = "LSP Format Success" }
+        )
+      end
+    elseif err then
+      vim.notify(string.format("[LSP][%s] %s", client.name, err), vim.log.levels.ERROR, { title = "LSP Format Error" })
+    end
+  end
 end
 
 return M
