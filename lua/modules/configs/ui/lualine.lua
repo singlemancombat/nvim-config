@@ -251,10 +251,11 @@ return function()
   require("lualine").setup({
     options = {
       icons_enabled = true,
-      theme = custom_theme(),
+      -- theme = custom_theme(),
+      theme = "auto",
       disabled_filetypes = { statusline = { "alpha" } },
       component_separators = "",
-      section_separators = { left = "", right = "" },
+      section_separators = { left = "", right = "" },
     },
     sections = {
       lualine_a = { "mode" },
@@ -303,7 +304,7 @@ return function()
             hint = icons.diagnostics.Hint_alt,
           },
         },
-        components.lsp,
+        -- components.lsp,
       },
       lualine_x = {
         {
