@@ -5,4 +5,5 @@ return function()
   vim.g.nord_disable_background = require("core.settings").transparent_background
   vim.g.nord_enable_sidebar_background = true
   vim.g.nord_italic = true
+  vim.g.nord_bold = false
 end
