@@ -105,7 +105,6 @@ settings["null_ls_deps"] = {
   "markdownlint",
   "editorconfig_checker",
   "prettier",
-  "rustfmt",
   "shfmt",
   "stylua",
   "vint",
