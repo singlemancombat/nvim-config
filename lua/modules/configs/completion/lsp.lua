@@ -135,12 +135,12 @@ return function()
     end
   end
 
-  mason_lspconfig.setup_handlers({ mason_lsp_handler })
-
   -- Setup lsps that are not supported by `mason.nvim` but supported by `nvim-lspconfig` here.
   if vim.fn.executable("dart") == 1 then
     local _opts = require("completion.servers.dartls")
     local final_opts = vim.tbl_deep_extend("keep", _opts, opts)
     nvim_lsp.dartls.setup(final_opts)
   end
+
+  vim.api.nvim_command([[LspStart]]) -- Start LSPs
 end
