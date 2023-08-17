@@ -25,11 +25,11 @@ function mapping.lsp(buf)
     ["n|gR"] = map_cr("Lspsaga rename ++project"):with_buffer(buf):with_desc("lsp: Rename in project range"),
     ["n|K"] = map_cr("Lspsaga hover_doc"):with_buffer(buf):with_desc("lsp: Show doc"),
     ["nv|ga"] = map_cr("Lspsaga code_action"):with_buffer(buf):with_desc("lsp: Code action for cursor"),
-    ["n|gd"] = map_cr("Glance definitions"):with_buffer(buf):with_desc("lsp: Preview definition"),
+    ["n|gd"] = map_cr("Lspsaga peek_definition"):with_buffer(buf):with_desc("lsp: Preview definition"),
     ["n|gD"] = map_cr("Lspsaga goto_definition"):with_buffer(buf):with_desc("lsp: Goto definition"),
     ["n|gp"] = map_cr("Lspsaga preview_definition"):with_buffer(buf):with_desc("lsp: Preview definition"),
     ["n|gt"] = map_cr("Lspsaga term_toggle"):with_buffer(buf):with_desc("lsp: Toggle term"),
-    ["n|gh"] = map_cr("Glance references"):with_buffer(buf):with_desc("lsp: Show reference"),
+    ["n|gh"] = map_cr("Lspsaga finder"):with_buffer(buf):with_desc("lsp: Show reference"),
     ["n|gci"] = map_cr("Lspsaga incoming_calls"):with_buffer(buf):with_desc("lsp: Show incoming calls"),
     ["n|gco"] = map_cr("Lspsaga outgoing_calls"):with_buffer(buf):with_desc("lsp: Show outgoing calls"),
   }
