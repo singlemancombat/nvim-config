@@ -80,6 +80,14 @@ editor["lambdalisue/suda.vim"] = {
   cmd = { "SudaRead", "SudaWrite" },
   config = require("editor.suda"),
 }
+editor["m4xshen/hardtime.nvim"] = {
+  lazy = true,
+  dependencies = {
+    "MunifTanjim/nui.nvim",
+    "nvim-lua/plenary.nvim",
+  },
+  config = require("editor.hardtime"),
+}
 
 ----------------------------------------------------------------------
 --                  :treesitter related plugins                    --
