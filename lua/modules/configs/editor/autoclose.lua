@@ -1,9 +1,9 @@
 return function()
-  require("autoclose").setup({
-    keys = {
-      ["("] = { escape = false, close = true, pair = "()" },
-      ["["] = { escape = false, close = true, pair = "[]" },
-      ["{"] = { escape = false, close = true, pair = "{}" },
+	require("modules.utils").load_plugin("autoclose", {
+		keys = {
+			["("] = { escape = false, close = true, pair = "()" },
+			["["] = { escape = false, close = true, pair = "[]" },
+			["{"] = { escape = false, close = true, pair = "{}" },
 
 			["<"] = { escape = true, close = true, pair = "<>", enabled_filetypes = { "rust" } },
 			[">"] = { escape = true, close = false, pair = "<>" },

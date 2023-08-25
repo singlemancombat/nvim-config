@@ -16,28 +16,29 @@ return function()
     end
   end
 
-  vim.g.rainbow_delimiters = {
-    strategy = {
-      [""] = init_strategy(500),
-      c = init_strategy(200),
-      cpp = init_strategy(200),
-      lua = init_strategy(500),
-      vimdoc = init_strategy(300),
-      vim = init_strategy(300),
-    },
-    query = {
-      [""] = "rainbow-delimiters",
-      latex = "rainbow-blocks",
-      javascript = "rainbow-delimiters-react",
-    },
-    highlight = {
-      "RainbowDelimiterRed",
-      "RainbowDelimiterOrange",
-      "RainbowDelimiterYellow",
-      "RainbowDelimiterGreen",
-      "RainbowDelimiterBlue",
-      "RainbowDelimiterCyan",
-      "RainbowDelimiterViolet",
-    },
-  }
+	vim.g.rainbow_delimiters = {
+		strategy = {
+			[""] = init_strategy(500),
+			c = init_strategy(200),
+			cpp = init_strategy(200),
+			lua = init_strategy(500),
+			vimdoc = init_strategy(300),
+			vim = init_strategy(300),
+		},
+		query = {
+			[""] = "rainbow-delimiters",
+			latex = "rainbow-blocks",
+			javascript = "rainbow-delimiters-react",
+		},
+		highlight = {
+			"RainbowDelimiterRed",
+			"RainbowDelimiterOrange",
+			"RainbowDelimiterYellow",
+			"RainbowDelimiterGreen",
+			"RainbowDelimiterBlue",
+			"RainbowDelimiterCyan",
+			"RainbowDelimiterViolet",
+		},
+	}
+	require("modules.utils").load_plugin("rainbow_delimiters", nil, true)
 end

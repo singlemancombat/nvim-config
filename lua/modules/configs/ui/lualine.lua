@@ -253,107 +253,107 @@ return function()
     },
   }
 
-  require("lualine").setup({
-    options = {
-      icons_enabled = true,
-      -- theme = custom_theme(),
-      theme = "auto",
-      disabled_filetypes = { statusline = { "alpha" } },
-      component_separators = "",
-      section_separators = { left = "", right = "" },
-    },
-    sections = {
-      lualine_a = { "mode" },
-      lualine_b = {
-        {
-          "filetype",
-          colored = true,
-          icon_only = false,
-          icon = { align = "left" },
-        },
-        components.file_status,
-        vim.tbl_extend("force", components.separator, {
-          cond = function()
-            return conditionals.has_git() and conditionals.has_comp_before()
-          end,
-        }),
-      },
-      lualine_c = {
-        {
-          "branch",
-          icon = icons.git_nosep.Branch,
-          color = utils.gen_hl("subtext0", true, true, nil, "bold"),
-          cond = conditionals.has_git,
-        },
-        {
-          "diff",
-          symbols = {
-            added = icons.git.Add,
-            modified = icons.git.Mod_alt,
-            removed = icons.git.Remove,
-          },
-          source = diff_source,
-          colored = false,
-          color = utils.gen_hl("subtext0", true, true),
-          cond = conditionals.has_git,
-          padding = { right = 1 },
-        },
-        { utils.force_centering },
-        {
-          "diagnostics",
-          sources = { "nvim_diagnostic" },
-          sections = { "error", "warn", "info", "hint" },
-          symbols = {
-            error = icons.diagnostics.Error,
-            warn = icons.diagnostics.Warning,
-            info = icons.diagnostics.Information,
-            hint = icons.diagnostics.Hint_alt,
-          },
-        },
-        -- components.lsp,
-      },
-      lualine_x = {
-        {
-          "encoding",
-          fmt = string.upper,
-          padding = { left = 1 },
-          cond = conditionals.has_enough_room,
-        },
-        {
-          "fileformat",
-          symbols = {
-            unix = "LF",
-            dos = "CRLF",
-            mac = "CR", -- Legacy macOS
-          },
-          padding = { left = 1 },
-        },
-        components.tabwidth,
-      },
-      lualine_y = {
-        components.separator,
-        components.python_venv,
-        components.cwd,
-      },
-      lualine_z = { components.file_location },
-    },
-    inactive_sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = { "filename" },
-      lualine_x = { "location" },
-      lualine_y = {},
-      lualine_z = {},
-    },
-    tabline = {},
-    extensions = {
-      "quickfix",
-      "nvim-tree",
-      "nvim-dap-ui",
-      "toggleterm",
-      "fugitive",
-      outline,
-      diffview,
-    },
-  })
+	require("modules.utils").load_plugin("lualine", {
+		options = {
+			icons_enabled = true,
+			theme = custom_theme(),
+			disabled_filetypes = { statusline = { "alpha" } },
+			component_separators = "",
+			section_separators = { left = "", right = "" },
+		},
+		sections = {
+			lualine_a = { "mode" },
+			lualine_b = {
+				{
+					"filetype",
+					colored = true,
+					icon_only = false,
+					icon = { align = "left" },
+				},
+				components.file_status,
+				vim.tbl_extend("force", components.separator, {
+					cond = function()
+						return conditionals.has_git() and conditionals.has_comp_before()
+					end,
+				}),
+			},
+			lualine_c = {
+				{
+					"branch",
+					icon = icons.git_nosep.Branch,
+					color = utils.gen_hl("subtext0", true, true, nil, "bold"),
+					cond = conditionals.has_git,
+				},
+				{
+					"diff",
+					symbols = {
+						added = icons.git.Add,
+						modified = icons.git.Mod_alt,
+						removed = icons.git.Remove,
+					},
+					source = diff_source,
+					colored = false,
+					color = utils.gen_hl("subtext0", true, true),
+					cond = conditionals.has_git,
+					padding = { right = 1 },
+				},
+
+				{ utils.force_centering },
+				{
+					"diagnostics",
+					sources = { "nvim_diagnostic" },
+					sections = { "error", "warn", "info", "hint" },
+					symbols = {
+						error = icons.diagnostics.Error,
+						warn = icons.diagnostics.Warning,
+						info = icons.diagnostics.Information,
+						hint = icons.diagnostics.Hint_alt,
+					},
+				},
+				components.lsp,
+			},
+			lualine_x = {
+				{
+					"encoding",
+					fmt = string.upper,
+					padding = { left = 1 },
+					cond = conditionals.has_enough_room,
+				},
+				{
+					"fileformat",
+					symbols = {
+						unix = "LF",
+						dos = "CRLF",
+						mac = "CR", -- Legacy macOS
+					},
+					padding = { left = 1 },
+				},
+				components.tabwidth,
+			},
+			lualine_y = {
+				components.separator,
+				components.python_venv,
+				components.cwd,
+			},
+			lualine_z = { components.file_location },
+		},
+		inactive_sections = {
+			lualine_a = {},
+			lualine_b = {},
+			lualine_c = { "filename" },
+			lualine_x = { "location" },
+			lualine_y = {},
+			lualine_z = {},
+		},
+		tabline = {},
+		extensions = {
+			"quickfix",
+			"nvim-tree",
+			"nvim-dap-ui",
+			"toggleterm",
+			"fugitive",
+			outline,
+			diffview,
+		},
+	})
 end

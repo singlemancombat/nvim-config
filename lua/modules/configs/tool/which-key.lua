@@ -4,18 +4,18 @@ return function()
     misc = require("modules.utils.icons").get("misc"),
   }
 
-  require("which-key").setup({
-    plugins = {
-      presets = {
-        operators = false,
-        motions = false,
-        text_objects = false,
-        windows = false,
-        nav = false,
-        z = true,
-        g = true,
-      },
-    },
+	require("modules.utils").load_plugin("which-key", {
+		plugins = {
+			presets = {
+				operators = false,
+				motions = false,
+				text_objects = false,
+				windows = false,
+				nav = false,
+				z = true,
+				g = true,
+			},
+		},
 
     icons = {
       breadcrumb = icons.ui.Separator,
