@@ -112,7 +112,7 @@ settings["null_ls_deps"] = {
   "eslint_d",
   "jq",
   "markdownlint",
-  "editorconfig_checker",
+  -- "editorconfig_checker",
   "prettier",
   "shfmt",
   "stylua",
