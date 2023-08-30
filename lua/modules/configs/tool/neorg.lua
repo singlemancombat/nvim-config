@@ -1,5 +1,5 @@
 return function()
-  require("modules.utils").load_plugin("neor", {
+  require("modules.utils").load_plugin("neorg", {
     load = {
       ["core.defaults"] = {}, -- Loads default behaviour
       ["core.concealer"] = {}, -- Adds pretty icons to your documents
