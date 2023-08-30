@@ -123,4 +123,14 @@ tool["mfussenegger/nvim-dap"] = {
   },
 }
 
+----------------------------------------------------------------------
+--                            Org Mode !                            --
+----------------------------------------------------------------------
+tool["nvim-neorg/neorg"] = {
+  lazy = true,
+  build = ":Neorg sync-parsers",
+  dependencies = { "nvim-lua/plenary.nvim" },
+  config = require("tool.neorg"),
+}
+
 return tool
