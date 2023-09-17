@@ -90,7 +90,7 @@ settings["server_formatting_block_list"] = {
 -- Set the language servers that will be installed during bootstrap here.
 -- check the below link for all the supported LSPs:
 -- https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/server_configurations
-settings["lsp"] = {
+settings["lsp_deps"] = {
   "bashls",
   "clangd",
   "gopls",
@@ -109,6 +109,8 @@ settings["null_ls_deps"] = {
   -- formatting
   "black",
   "clang_format",
+	"gofumpt",
+	"goimports",
   "eslint_d",
   "jq",
   "markdownlint",
