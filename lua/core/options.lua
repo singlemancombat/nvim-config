@@ -123,9 +123,9 @@ local function load_options()
     vim.g.python3_host_prog = use_if_defined(vim.g.python3_host_prog, "python3")
   end
 
-	for name, value in pairs(require("modules.utils").extend_config(global_local, "user.options")) do
-		vim.o[name] = value
-	end
+  for name, value in pairs(require("modules.utils").extend_config(global_local, "user.options")) do
+    vim.o[name] = value
+  end
 end
 
 load_options()

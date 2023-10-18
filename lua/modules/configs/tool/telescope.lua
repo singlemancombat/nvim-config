@@ -43,11 +43,6 @@ return function()
       generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
       buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     },
-    pickers = {
-      colorscheme = {
-        enable_preview = true,
-      },
-    },
     extensions = {
       fzf = {
         fuzzy = false,
@@ -56,6 +51,7 @@ return function()
         case_mode = "smart_case",
       },
       frecency = {
+        use_sqlite = false,
         show_scores = true,
         show_unindexed = true,
         ignore_patterns = { "*.git/*", "*/tmp/*" },
