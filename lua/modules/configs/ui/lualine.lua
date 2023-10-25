@@ -1,4 +1,5 @@
 return function()
+  local has_catppuccin = vim.g.colors_name:find("catppuccin") ~= nil
   local colors = require("modules.utils").get_palette()
   local icons = {
     diagnostics = require("modules.utils.icons").get("diagnostics", true),
@@ -13,39 +14,44 @@ return function()
       group = vim.api.nvim_create_augroup("LualineColorScheme", { clear = true }),
       pattern = "*",
       callback = function()
+        has_catppuccin = vim.g.colors_name:find("catppuccin") ~= nil
         require("lualine").setup({ options = { theme = custom_theme() } })
       end,
     })
 
-    colors = require("modules.utils").get_palette()
-    local universal_bg = require("core.settings").transparent_background and "NONE" or colors.mantle
-    return {
-      normal = {
-        a = { fg = colors.lavender, bg = colors.surface0, gui = "bold" },
-        b = { fg = colors.text, bg = universal_bg },
-        c = { fg = colors.text, bg = universal_bg },
-      },
-      command = {
-        a = { fg = colors.peach, bg = colors.surface0, gui = "bold" },
-      },
-      insert = {
-        a = { fg = colors.green, bg = colors.surface0, gui = "bold" },
-      },
-      visual = {
-        a = { fg = colors.flamingo, bg = colors.surface0, gui = "bold" },
-      },
-      terminal = {
-        a = { fg = colors.teal, bg = colors.surface0, gui = "bold" },
-      },
-      replace = {
-        a = { fg = colors.red, bg = colors.surface0, gui = "bold" },
-      },
-      inactive = {
-        a = { fg = colors.subtext0, bg = universal_bg, gui = "bold" },
-        b = { fg = colors.subtext0, bg = universal_bg },
-        c = { fg = colors.subtext0, bg = universal_bg },
-      },
-    }
+    if has_catppuccin then
+      colors = require("modules.utils").get_palette()
+      local universal_bg = require("core.settings").transparent_background and "NONE" or colors.mantle
+      return {
+        normal = {
+          a = { fg = colors.lavender, bg = colors.surface0, gui = "bold" },
+          b = { fg = colors.text, bg = universal_bg },
+          c = { fg = colors.text, bg = universal_bg },
+        },
+        command = {
+          a = { fg = colors.peach, bg = colors.surface0, gui = "bold" },
+        },
+        insert = {
+          a = { fg = colors.green, bg = colors.surface0, gui = "bold" },
+        },
+        visual = {
+          a = { fg = colors.flamingo, bg = colors.surface0, gui = "bold" },
+        },
+        terminal = {
+          a = { fg = colors.teal, bg = colors.surface0, gui = "bold" },
+        },
+        replace = {
+          a = { fg = colors.red, bg = colors.surface0, gui = "bold" },
+        },
+        inactive = {
+          a = { fg = colors.subtext0, bg = universal_bg, gui = "bold" },
+          b = { fg = colors.subtext0, bg = universal_bg },
+          c = { fg = colors.subtext0, bg = universal_bg },
+        },
+      }
+    else
+      return "auto"
+    end
   end
 
   local mini_sections = {
@@ -104,17 +110,22 @@ return function()
     ---@param special_nobg boolean @Disable guibg for transparent backgrounds?
     ---@param bg string? @Background hl group
     ---@param gui string? @GUI highlight arguments
-    ---@return fun():lualine_hlgrp
+    ---@return nil|fun():lualine_hlgrp
     gen_hl = function(fg, gen_bg, special_nobg, bg, gui)
-      return function()
-        local guifg = colors[fg]
-        local guibg = gen_bg and require("modules.utils").hl_to_rgb("StatusLine", true, colors.mantle) or colors[bg]
-        local nobg = special_nobg and require("core.settings").transparent_background
-        return {
-          fg = guifg and guifg or colors.none,
-          bg = (guibg and not nobg) and guibg or colors.none,
-          gui = gui and gui or nil,
-        }
+      if has_catppuccin then
+        return function()
+          local guifg = colors[fg]
+          local guibg = gen_bg and require("modules.utils").hl_to_rgb("StatusLine", true, colors.mantle) or colors[bg]
+          local nobg = special_nobg and require("core.settings").transparent_background
+          return {
+            fg = guifg and guifg or colors.none,
+            bg = (guibg and not nobg) and guibg or colors.none,
+            gui = gui and gui or nil,
+          }
+        end
+      else
+        -- Return `nil` if the theme is user-defined
+        return nil
       end
     end,
   }
@@ -253,107 +264,107 @@ return function()
     },
   }
 
-	require("modules.utils").load_plugin("lualine", {
-		options = {
-			icons_enabled = true,
-			theme = custom_theme(),
-			disabled_filetypes = { statusline = { "alpha" } },
-			component_separators = "",
-			section_separators = { left = "", right = "" },
-		},
-		sections = {
-			lualine_a = { "mode" },
-			lualine_b = {
-				{
-					"filetype",
-					colored = true,
-					icon_only = false,
-					icon = { align = "left" },
-				},
-				components.file_status,
-				vim.tbl_extend("force", components.separator, {
-					cond = function()
-						return conditionals.has_git() and conditionals.has_comp_before()
-					end,
-				}),
-			},
-			lualine_c = {
-				{
-					"branch",
-					icon = icons.git_nosep.Branch,
-					color = utils.gen_hl("subtext0", true, true, nil, "bold"),
-					cond = conditionals.has_git,
-				},
-				{
-					"diff",
-					symbols = {
-						added = icons.git.Add,
-						modified = icons.git.Mod_alt,
-						removed = icons.git.Remove,
-					},
-					source = diff_source,
-					colored = false,
-					color = utils.gen_hl("subtext0", true, true),
-					cond = conditionals.has_git,
-					padding = { right = 1 },
-				},
+  require("modules.utils").load_plugin("lualine", {
+    options = {
+      icons_enabled = true,
+      theme = custom_theme(),
+      disabled_filetypes = { statusline = { "alpha" } },
+      component_separators = "",
+      section_separators = { left = "", right = "" },
+    },
+    sections = {
+      lualine_a = { "mode" },
+      lualine_b = {
+        {
+          "filetype",
+          colored = true,
+          icon_only = false,
+          icon = { align = "left" },
+        },
+        components.file_status,
+        vim.tbl_extend("force", components.separator, {
+          cond = function()
+            return conditionals.has_git() and conditionals.has_comp_before()
+          end,
+        }),
+      },
+      lualine_c = {
+        {
+          "branch",
+          icon = icons.git_nosep.Branch,
+          color = utils.gen_hl("subtext0", true, true, nil, "bold"),
+          cond = conditionals.has_git,
+        },
+        {
+          "diff",
+          symbols = {
+            added = icons.git.Add,
+            modified = icons.git.Mod_alt,
+            removed = icons.git.Remove,
+          },
+          source = diff_source,
+          colored = false,
+          color = utils.gen_hl("subtext0", true, true),
+          cond = conditionals.has_git,
+          padding = { right = 1 },
+        },
 
-				{ utils.force_centering },
-				{
-					"diagnostics",
-					sources = { "nvim_diagnostic" },
-					sections = { "error", "warn", "info", "hint" },
-					symbols = {
-						error = icons.diagnostics.Error,
-						warn = icons.diagnostics.Warning,
-						info = icons.diagnostics.Information,
-						hint = icons.diagnostics.Hint_alt,
-					},
-				},
-				components.lsp,
-			},
-			lualine_x = {
-				{
-					"encoding",
-					fmt = string.upper,
-					padding = { left = 1 },
-					cond = conditionals.has_enough_room,
-				},
-				{
-					"fileformat",
-					symbols = {
-						unix = "LF",
-						dos = "CRLF",
-						mac = "CR", -- Legacy macOS
-					},
-					padding = { left = 1 },
-				},
-				components.tabwidth,
-			},
-			lualine_y = {
-				components.separator,
-				components.python_venv,
-				components.cwd,
-			},
-			lualine_z = { components.file_location },
-		},
-		inactive_sections = {
-			lualine_a = {},
-			lualine_b = {},
-			lualine_c = { "filename" },
-			lualine_x = { "location" },
-			lualine_y = {},
-			lualine_z = {},
-		},
-		tabline = {},
-		extensions = {
-			"quickfix",
-			"nvim-tree",
-			"nvim-dap-ui",
-			"toggleterm",
-			"fugitive",
-			outline,
-			diffview,
-		},
-	})
+        { utils.force_centering },
+        {
+          "diagnostics",
+          sources = { "nvim_diagnostic" },
+          sections = { "error", "warn", "info", "hint" },
+          symbols = {
+            error = icons.diagnostics.Error,
+            warn = icons.diagnostics.Warning,
+            info = icons.diagnostics.Information,
+            hint = icons.diagnostics.Hint_alt,
+          },
+        },
+        components.lsp,
+      },
+      lualine_x = {
+        {
+          "encoding",
+          fmt = string.upper,
+          padding = { left = 1 },
+          cond = conditionals.has_enough_room,
+        },
+        {
+          "fileformat",
+          symbols = {
+            unix = "LF",
+            dos = "CRLF",
+            mac = "CR", -- Legacy macOS
+          },
+          padding = { left = 1 },
+        },
+        components.tabwidth,
+      },
+      lualine_y = {
+        components.separator,
+        components.python_venv,
+        components.cwd,
+      },
+      lualine_z = { components.file_location },
+    },
+    inactive_sections = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = { "filename" },
+      lualine_x = { "location" },
+      lualine_y = {},
+      lualine_z = {},
+    },
+    tabline = {},
+    extensions = {
+      "quickfix",
+      "nvim-tree",
+      "nvim-dap-ui",
+      "toggleterm",
+      "fugitive",
+      outline,
+      diffview,
+    },
+  })
 end
