@@ -28,7 +28,6 @@ ui["sainnhe/edge"] = {
 }
 ui["j-hui/fidget.nvim"] = {
   lazy = true,
-  branch = "legacy",
   event = "LspAttach",
   config = require("ui.fidget"),
 }
@@ -38,8 +37,8 @@ ui["lewis6991/gitsigns.nvim"] = {
   config = require("ui.gitsigns"),
 }
 ui["lukas-reineke/indent-blankline.nvim"] = {
-	lazy = true,
-	event = { "CursorHold", "CursorHoldI" },
+  lazy = true,
+  event = { "CursorHold", "CursorHoldI" },
   config = require("ui.indent-blankline"),
 }
 ui["nvim-lualine/lualine.nvim"] = {
@@ -48,10 +47,10 @@ ui["nvim-lualine/lualine.nvim"] = {
   config = require("ui.lualine"),
 }
 ui["zbirenbaum/neodim"] = {
-	lazy = true,
-	commit = "9477da0",
-	event = "LspAttach",
-	config = require("ui.neodim"),
+  lazy = true,
+  commit = "9477da0",
+  event = "LspAttach",
+  config = require("ui.neodim"),
 }
 ui["karb94/neoscroll.nvim"] = {
   lazy = true,
