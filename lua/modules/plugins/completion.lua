@@ -34,14 +34,14 @@ completion["joechrisellis/lsp-format-modifications.nvim"] = {
   lazy = true,
   event = "LspAttach",
 }
-completion["jose-elias-alvarez/null-ls.nvim"] = {
-  lazy = true,
-  event = { "CursorHold", "CursorHoldI" },
-  config = require("completion.null-ls"),
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "jay-babu/mason-null-ls.nvim",
-  },
+completion["nvimtools/none-ls.nvim"] = {
+	lazy = true,
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("completion.null-ls"),
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"jay-babu/mason-null-ls.nvim",
+	},
 }
 completion["hrsh7th/nvim-cmp"] = {
   lazy = true,
