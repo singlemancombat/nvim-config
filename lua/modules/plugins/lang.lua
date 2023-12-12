@@ -26,6 +26,14 @@ lang["ray-x/go.nvim"] = {
   config = require("lang.ray-go"),
   event = { "CmdlineEnter" },
 }
+lang["kevinhwang91/nvim-bqf"] = {
+	lazy = true,
+	ft = "qf",
+	config = require("lang.bqf"),
+	dependencies = {
+		{ "junegunn/fzf", build = ":call fzf#install()" },
+	},
+}
 lang["simrat39/rust-tools.nvim"] = {
   lazy = true,
   ft = "rust",
