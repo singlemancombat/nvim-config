@@ -34,12 +34,6 @@ lang["kevinhwang91/nvim-bqf"] = {
 		{ "junegunn/fzf", build = ":call fzf#install()" },
 	},
 }
-lang["simrat39/rust-tools.nvim"] = {
-  lazy = true,
-  ft = "rust",
-  config = require("lang.rust-tools"),
-  dependencies = { "nvim-lua/plenary.nvim" },
-}
 lang["mfussenegger/nvim-jdtls"] = {
   lazy = true,
   ft = "java",
@@ -50,6 +44,13 @@ lang["scalameta/nvim-metals"] = {
   ft = "scala",
   config = require("lang.metals"),
   dependencies = { "nvim-lua/plenary.nvim" },
+
+lang["mrcjkb/rustaceanvim"] = {
+	lazy = true,
+	ft = "rust",
+	version = "^3",
+	config = require("lang.rust"),
+	dependencies = { "nvim-lua/plenary.nvim" },
 }
 lang["Saecki/crates.nvim"] = {
   lazy = true,
