@@ -44,7 +44,7 @@ lang["scalameta/nvim-metals"] = {
   ft = "scala",
   config = require("lang.metals"),
   dependencies = { "nvim-lua/plenary.nvim" },
-
+}
 lang["mrcjkb/rustaceanvim"] = {
 	lazy = true,
 	ft = "rust",
