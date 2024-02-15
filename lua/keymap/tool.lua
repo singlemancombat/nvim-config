@@ -111,15 +111,24 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("ui: Change colorscheme for current session"),
-  ["n|<leader>fn"] = map_cu(":enew"):with_noremap():with_silent():with_desc("buffer: New"),
-  ["n|<leader>fg"] = map_cu("Telescope git_files"):with_noremap():with_silent():with_desc("find: file in git project"),
-  ["n|<leader>fz"] = map_cu("Telescope zoxide list")
-    :with_noremap()
-    :with_silent()
-    :with_desc("edit: Change current direrctory by zoxide"),
-  ["n|<leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent():with_desc("find: Buffer opened"),
-  ["n|<leader>fs"] = map_cu("Telescope grep_string"):with_noremap():with_silent():with_desc("find: Current word"),
-  ["n|<leader>fd"] = map_cu("Telescope persisted"):with_noremap():with_silent():with_desc("find: Session"),
+	["n|<leader>bn"] = map_cu(":enew"):with_noremap():with_silent():with_desc("buffer: New"),
+	["n|<leader>fg"] = map_cu("Telescope git_files")
+		:with_noremap()
+		:with_silent()
+		:with_desc("find: file in git project"),
+	["n|<leader>fz"] = map_cu("Telescope zoxide list")
+		:with_noremap()
+		:with_silent()
+		:with_desc("edit: Change current direrctory by zoxide"),
+	["n|<leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent():with_desc("find: Buffer opened"),
+	["n|<leader>fs"] = map_cu("Telescope grep_string"):with_noremap():with_silent():with_desc("find: Current word"),
+	["v|<leader>fs"] = map_callback(function()
+			require("telescope.builtin").grep_string({ search = _buf_vtext() }) -- luacheck: ignore
+		end)
+		:with_noremap()
+		:with_silent()
+		:with_desc("find: Selection text"),
+	["n|<leader>fd"] = map_cu("Telescope persisted"):with_noremap():with_silent():with_desc("find: Session"),
 
   -- Plugin: dap
   ["n|<F6>"] = map_callback(function()
