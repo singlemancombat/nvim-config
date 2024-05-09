@@ -155,12 +155,6 @@ tool["mfussenegger/nvim-dap"] = {
 ----------------------------------------------------------------------
 --                            Org Mode !                            --
 ----------------------------------------------------------------------
-tool["nvim-neorg/neorg"] = {
-  lazy = false,
-  build = ":Neorg sync-parsers",
-  dependencies = { "nvim-lua/plenary.nvim" },
-  config = require("tool.neorg"),
-}
 
 ----------------------------------------------------------------------
 --                              LeetCode                            --
